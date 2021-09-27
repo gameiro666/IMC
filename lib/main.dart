@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'tela_sobre.dart';
 
 void main(){
   runApp(MaterialApp(
@@ -12,6 +13,8 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
+
+
 
 class _HomeState extends State<Home> {
 
@@ -74,7 +77,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.red,        
         title: Text("Calculadora de IMC"),
         centerTitle: true,
         actions:<Widget>[
@@ -82,8 +85,25 @@ class _HomeState extends State<Home> {
           onPressed: (){
             _limparCampos();
           },)
+          
         ],
-      ),
+        
+      ), drawer: Drawer(
+        child: ListView(children: [
+          const UserAccountsDrawerHeader(
+            accountName: Text("DDMI"), 
+            accountEmail: Text("felipe.gameiro01@fatec.sp.gov.br")),
+          
+          ListTile(
+           leading: const Icon (Icons.account_box_outlined),
+            title: const Text ("Sobre o Projeto"),
+            subtitle: const Text ("Detalhes sobre o desenvolvimento"),
+            trailing: const Icon (Icons.arrow_forward_ios),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Sobre()),
+              );}, 
+          )
+        ],) ),
     body:SingleChildScrollView(
       padding: EdgeInsets.all(10.0),
       child: Column(
